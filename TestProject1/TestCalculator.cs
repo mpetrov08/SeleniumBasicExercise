@@ -20,7 +20,15 @@ namespace TestProject1
         [OneTimeSetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArgument("headless");
+            options.AddArgument("no-sandbox");
+            options.AddArgument("disable-dev-shm-usage");
+            options.AddArgument("disable-gpu");
+            options.AddArgument("window-size=1920,1080");
+            options.AddArgument("disable-extensions");
+
+            driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Url = "https://calculatorhtml.onrender.com/";
 
