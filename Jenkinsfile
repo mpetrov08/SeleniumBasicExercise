@@ -1,24 +1,30 @@
 pipeline {
     agent any
+    environment {
+        CHROMEWEBDRIVER = '/usr/bin/google-chrome'
+    }
     stages {
         stage('Build Project') {
             steps {
                 bat 'dotnet build'
             }
         }
-        stage('Run Project 1 Tests') {
+        stage('Run TestProject1 Tests') {
             steps {
-                bat 'dotnet test TestProject1/TestProject1.csproj'
+                echo 'Running TestProject1 tests'
+                bat 'dotnet test TestProject1/TestProject1.csproj --verbosity normal'
             }
         }
-        stage('Run Project 2 Tests') {
+        stage('Run TestProject2 Tests') {
             steps {
-                bat 'dotnet test TestProject2/TestProject2.csproj'
+                echo 'Running TestProject2 tests'
+                bat 'dotnet test TestProject2/TestProject2.csproj --verbosity normal'
             }
         }
-        stage('Run Project 3 Tests') {
+        stage('Run TestProject3 Tests') {
             steps {
-                bat 'dotnet test TestProject3/TestProject3.csproj'
+                echo 'Running TestProject3 tests'
+                bat 'dotnet test TestProject3/TestProject3.csproj --verbosity normal'
             }
         }
     }
